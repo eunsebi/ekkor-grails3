@@ -1,4 +1,4 @@
-package tutorial
+package xyz.ekkor
 
 class UrlMappings {
 

@@ -1,4 +1,4 @@
-package com.lucasaquiles.auth
+package xyz.ekkor
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString

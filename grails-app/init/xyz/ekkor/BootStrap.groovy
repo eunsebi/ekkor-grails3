@@ -1,15 +1,13 @@
-package tutorial
-
-import com.lucasaquiles.auth.*
+package xyz.ekkor
 
 class BootStrap {
 
     def init = { servletContext ->
 			  
 			  def roleAdmin = new Role(authority: 'ROLE_ADMIN').save()
-			  def adminUser = new User(username: 'user', password: 'user').save()    	
-    
-			  UserRole.create adminUser, roleAdmin
+			  def adminUser = new User(username: 'user', password: 'user').save()
+
+		UserRole.create adminUser, roleAdmin
     
 			  UserRole.withSession {
 				    it.flush()

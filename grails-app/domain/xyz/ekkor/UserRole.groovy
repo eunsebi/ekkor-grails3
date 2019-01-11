@@ -1,4 +1,4 @@
-package com.lucasaquiles.auth
+package xyz.ekkor
 
 import grails.gorm.DetachedCriteria
 import groovy.transform.ToString
