@@ -54,6 +54,12 @@ dependencies {
     compile 'org.grails.plugins:spring-security-core:3.2.0'
     compile 'org.grails.plugins:spring-security-rest:2.0.0.M2'
     profile "org.grails.profiles:web"
+    
+    // 추가
+    compile "com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20180219.1"
+    
+    //
+    
     runtime "org.glassfish.web:el-impl:2.1.2-b03"
     runtime "com.h2database:h2"
     runtime "org.apache.tomcat:tomcat-jdbc"
