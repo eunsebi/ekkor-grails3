@@ -9,7 +9,16 @@ class UrlMappings {
             }
         }
 
-        "/"(view:"/index")
+        //"/"(controller: "main", action: 'index')
+
+        //"/"(view:"/index")
+        "/"(view:"/main/index")
+
+
+        //추가
+        "/user/privacy"(view: '/user/privacy')
+        "/user/agreement"(view: '/user/agreement')
+
         "500"(view:'/error')
         "404"(view:'/notFound')
     }

@@ -1,4 +1,4 @@
-<%@ page import="net.okjsp.Category" %>
+<%@ page import="xyz.ekkor.Category" %>
 <g:set var="isSub" value="${!!category}"/>
 <g:set var="parentCategory" value="${category?.parent ?: category}"/>
 <div class="sidebar ${isSub ? 'sidebar-category' : ''}">
@@ -47,37 +47,37 @@
             <g:form controller="logout" method="post" style="display:none;"><g:submitButton name="logoutButton" /></g:form>
 
             <script id="setting-template" type="text/template">
-                <div class="popover popover-fixed" role="tooltip"><div class="arrow"></div>
-                    <h3 class="popover-title"></h3>
-                    <div class="popover-footer clearfix" id="user-func-popover">
-                        <label href="" for="logoutButton" class="popover-btn"><i class="fa fa-sign-out"></i> 로그아웃</label>
-                        <g:link uri="/user/edit" class="popover-btn"><i class="fa fa-user"></i> 정보수정</g:link>
-                    </div>
+            <div class="popover popover-fixed" role="tooltip"><div class="arrow"></div>
+                <h3 class="popover-title"></h3>
+                <div class="popover-footer clearfix" id="user-func-popover">
+                    <label href="" for="logoutButton" class="popover-btn"><i class="fa fa-sign-out"></i> 로그아웃</label>
+                    <g:link uri="/user/edit" class="popover-btn"><i class="fa fa-user"></i> 정보수정</g:link>
                 </div>
+            </div>
             </script>
 
             <script id="notification-template" type="text/template">
-                <div class="popover popover-fixed" role="tooltip"><div class="arrow"></div>
-                    <h3 class="popover-title"></h3>
-                    <div class="popover-content" id="notification-popover"></div>
-                </div>
+            <div class="popover popover-fixed" role="tooltip"><div class="arrow"></div>
+                <h3 class="popover-title"></h3>
+                <div class="popover-content" id="notification-popover"></div>
+            </div>
             </script>
 
             <script id="search-google-template" type="text/template">
-                <div class="popover popover-fixed" role="tooltip"><div class="arrow"></div>
-                    <h3 class="popover-title">Google 검색</h3>
-                    <div class="popover-content" id="search-google-popover">
-                        <form id="search-google-form" name="searchMain" class="nav-sidebar-form" action="https://www.google.com/search" onsubmit="searchMain.q.value='site:okky.kr '+searchMain.qt.value;">
-                            <div class="input-group">
-                                <input type="text" name="qt" class="form-control input-sm" placeholder="Google 검색" />
-                                <input type="hidden" name="q" />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default btn-sm" type="submit"><i class="fa fa-search"></i></button>
-                                </span>
-                            </div>
-                        </form>
-                    </div>
+            <div class="popover popover-fixed" role="tooltip"><div class="arrow"></div>
+                <h3 class="popover-title">Google 검색</h3>
+                <div class="popover-content" id="search-google-popover">
+                    <form id="search-google-form" name="searchMain" class="nav-sidebar-form" action="https://www.google.com/search" onsubmit="searchMain.q.value='site:okky.kr '+searchMain.qt.value;">
+                        <div class="input-group">
+                            <input type="text" name="qt" class="form-control input-sm" placeholder="Google 검색" />
+                            <input type="hidden" name="q" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default btn-sm" type="submit"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
                 </div>
+            </div>
             </script>
 
         </sec:ifLoggedIn>
@@ -111,35 +111,35 @@
     </ul>--}%
 </div>
 <g:if test="${isSub}">
-<g:set var="subCategories" value="${category.children ?: category.parent?.children}"/>
-<div class="sidebar-category-nav">
-    <h3 class="sub-title"><g:message code="${parentCategory.labelCode}" default="${parentCategory.defaultLabel}" /></h3>
-    <ul class="nav">
-        <li>
-            <g:link uri="/articles/${parentCategory.code}" class="link">
-                <span class="nav-sidebar-label nav-sidebar-category-label">All</span>
-                <span class="nav-indicator ${category.code == parentCategory.code ? 'nav-selected': ''}">
-                    <span class="nav-selected-dot"></span></span>
-            </g:link>
-        </li>
-        <g:each in="${subCategories}" var="subCategory">
-            <g:if test="${subCategory.isURL}">
-                <li><g:link uri="${subCategory.url}" class="link"><span class="nav-sidebar-label nav-sidebar-category-label"><g:message code="${subCategory.labelCode}" default="${subCategory.defaultLabel}" /></span> <span class="nav-indicator ${subCategory.code == category.code ? 'nav-selected': ''}"><span class="nav-selected-dot"></span></span></g:link></li>
-            </g:if>
-            <g:else>
-                <li><g:link uri="/articles/${subCategory.code}" class="link"><span class="nav-sidebar-label nav-sidebar-category-label"><g:message code="${subCategory.labelCode}" default="${subCategory.defaultLabel}" /></span> <span class="nav-indicator ${subCategory.code == category.code ? 'nav-selected': ''}"><span class="nav-selected-dot"></span></span></g:link></li>
-            </g:else>
-        </g:each>
-    </ul>
-    %{--<div class="special-nav">
-    <g:if test="${parentCategory.code == 'jobs'}">
-    <ul class="nav">
-        <li>
-            <g:link uri="/user/info/35324">∙ eBrainJobs</g:link>
-            <g:link uri="/articles/recruit?filter.jobType=FULLTIME">∙ 구인 <span class="label label-success label">정규직</span> </g:link>
-        </li>
-    </ul>
-    </g:if>
-    </div>--}%
-</div>
+    <g:set var="subCategories" value="${category.children ?: category.parent?.children}"/>
+    <div class="sidebar-category-nav">
+        <h3 class="sub-title"><g:message code="${parentCategory.labelCode}" default="${parentCategory.defaultLabel}" /></h3>
+        <ul class="nav">
+            <li>
+                <g:link uri="/articles/${parentCategory.code}" class="link">
+                    <span class="nav-sidebar-label nav-sidebar-category-label">All</span>
+                    <span class="nav-indicator ${category.code == parentCategory.code ? 'nav-selected': ''}">
+                        <span class="nav-selected-dot"></span></span>
+                </g:link>
+            </li>
+            <g:each in="${subCategories}" var="subCategory">
+                <g:if test="${subCategory.isURL}">
+                    <li><g:link uri="${subCategory.url}" class="link"><span class="nav-sidebar-label nav-sidebar-category-label"><g:message code="${subCategory.labelCode}" default="${subCategory.defaultLabel}" /></span> <span class="nav-indicator ${subCategory.code == category.code ? 'nav-selected': ''}"><span class="nav-selected-dot"></span></span></g:link></li>
+                </g:if>
+                <g:else>
+                    <li><g:link uri="/articles/${subCategory.code}" class="link"><span class="nav-sidebar-label nav-sidebar-category-label"><g:message code="${subCategory.labelCode}" default="${subCategory.defaultLabel}" /></span> <span class="nav-indicator ${subCategory.code == category.code ? 'nav-selected': ''}"><span class="nav-selected-dot"></span></span></g:link></li>
+                </g:else>
+            </g:each>
+        </ul>
+        %{--<div class="special-nav">
+        <g:if test="${parentCategory.code == 'jobs'}">
+        <ul class="nav">
+            <li>
+                <g:link uri="/user/info/35324">∙ eBrainJobs</g:link>
+                <g:link uri="/articles/recruit?filter.jobType=FULLTIME">∙ 구인 <span class="label label-success label">정규직</span> </g:link>
+            </li>
+        </ul>
+        </g:if>
+        </div>--}%
+    </div>
 </g:if>

@@ -57,7 +57,7 @@ dependencies {
     
     // 추가
     compile "com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20180219.1"
-    
+    compile "org.grails.plugins:random:0.2"
     //
     
     runtime "org.glassfish.web:el-impl:2.1.2-b03"
