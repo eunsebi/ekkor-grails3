@@ -79,9 +79,15 @@ class User implements Serializable {
             dateJoined formula: "DATE_FORMAT(date_created, '%Y-%m-%d')"
     }
 
-    Set<Role> getAuthorities() {
+    // 2019. 01. 15 그룹 권한 변경으로 주석처리
+    /*Set<Role> getAuthorities() {
         (UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
         //UserRole.findAllByUser(this).collect { it.role }
+    }*/
+
+    Set<RoleGroup> getAuthorities() {
+        //UserRoleGroup.findAllByUser(this)*.roleGroup as Set<RoleGroup>
+        UserRoleGroup.findAllByUser(this)*.roleGroup
     }
 
     /*def beforeInsert() {

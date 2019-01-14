@@ -2,7 +2,7 @@ package xyz.ekkor
 
 import grails.gorm.DetachedCriteria
 import groovy.transform.ToString
-
+import org.apache.commons.lang.builder.HashCodeBuilder
 import org.codehaus.groovy.util.HashCodeHelper
 import grails.compiler.GrailsCompileStatic
 
@@ -22,7 +22,8 @@ class UserRole implements Serializable {
 		}
 	}
 
-    @Override
+	// 2019. 01. 19 기존꺼
+    /*@Override
 	int hashCode() {
 	    int hashCode = HashCodeHelper.initHash()
         if (user) {
@@ -32,6 +33,14 @@ class UserRole implements Serializable {
 		    hashCode = HashCodeHelper.updateHash(hashCode, role.id)
 		}
 		hashCode
+	}*/
+
+	@Override
+	int hashCode() {
+		def builder = new HashCodeBuilder()
+		if (user) builder.append(user.id)
+		if (role) builder.append(role.id)
+		builder.toHashCode()
 	}
 
 	static UserRole get(long userId, long roleId) {
@@ -69,7 +78,8 @@ class UserRole implements Serializable {
 		r == null ? 0 : UserRole.where { role == r }.deleteAll() as int
 	}
 
-	static constraints = {
+	// 2019. 01. 15 수정 전꺼
+	/*static constraints = {
 	    user nullable: false
 		role nullable: false, validator: { Role r, UserRole ur ->
 			if (ur.user?.id) {
@@ -78,10 +88,22 @@ class UserRole implements Serializable {
 				}
 			}
 		}
+	}*/
+
+	static constraints = {
+		role validator: { Role r, UserRole ur ->
+			if (ur.user?.id) {
+				UserRole.withNewSession {
+					if (UserRole.exists(ur.user.id, r.id)) {
+						return ['userRole.exists']
+					}
+				}
+			}
+		}
 	}
 
 	static mapping = {
 		id composite: ['user', 'role']
-		//version false
+		version false
 	}
 }

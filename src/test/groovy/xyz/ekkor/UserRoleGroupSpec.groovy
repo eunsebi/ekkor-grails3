@@ -1,9 +1,9 @@
-package tutorial
+package xyz.ekkor
 
-import grails.testing.services.ServiceUnitTest
+import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
 
-class SanitizeServiceSpec extends Specification implements ServiceUnitTest<SanitizeService>{
+class UserRoleGroupSpec extends Specification implements DomainUnitTest<UserRoleGroup> {
 
     def setup() {
     }
